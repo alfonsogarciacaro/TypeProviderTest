@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <DefineConstants>NO_GENERATIVE;NETSTANDARD</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="ProvidedTypes.fs" />
+    <Compile Include="Library.fs" />
+  </ItemGroup>
+
+</Project>
