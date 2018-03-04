@@ -1,7 +1,3 @@
-﻿module Program
+﻿module Main
 
-open StaticProperty.Provided
-
-let helloWorld = MyType.MyProperty
-
-printfn "%s" helloWorld
+let t = M.Test(true)

@@ -1,29 +1,11 @@
-# Testing Type Providers (erased) with netcore/netstandard
+# Does FCS detect implicit constructors from .fsi signatures?
 
-Build TypeProviderTest
-
-```shell
-dotnet build TypeProviderTest
-```
-
-Run Console project with netcore compiler (correctly prints "Hello World").
+See https://github.com/fable-compiler/Fable/issues/571
 
 ```shell
-cd Console
-dotnet run
-cd ..
-```
-
-Parse AST with FCS 20.0.1 (doesn't show "Hello World").
-
-```shell
+dotnet restore Console
 cd ASTViewer
 dotnet run ../Console/Console.fsproj
 ```
 
-Update to FCS 21.0.1, correctly shows "Hello World" in the AST :)
-
-```shell
-dotnet add package FSharp.Compiler.Service -v 21.0.1
-dotnet run ../Console/Console.fsproj
-```
+The last line says `CALL to M.Test.( .ctor ) (constructor true, implicit true)` so it seems last FCS correctly identifies implicit constructors even if they come from an .fsi signature.

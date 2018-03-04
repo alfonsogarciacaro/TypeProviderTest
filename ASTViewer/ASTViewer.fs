@@ -28,10 +28,15 @@ let rec printDecls prefix decls =
         | FSharpImplementationFileDeclaration.MemberOrFunctionOrValue (meth, _args, body) ->
             if meth.IsCompilerGenerated |> not then
                 printfn "%s%i) METHOD: %s" prefix i meth.FullName
-                printfn "%A" body
+                match body with
+                | BasicPatterns.Call(_,m,_,_,_)
+                | BasicPatterns.NewObject(m,_,_) ->
+                    printfn "%s CALL to %s (constructor %b, implicit %b)"
+                        prefix m.FullName m.IsConstructor m.IsImplicitConstructor
+                | _ -> () // printfn "%A" body
         | FSharpImplementationFileDeclaration.InitAction (expr) ->
             printfn "%s%i) ACTION" prefix i
-            printfn "%A" expr
+            // printfn "%A" expr
         )
 
 [<EntryPoint>]
